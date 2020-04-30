@@ -17,7 +17,9 @@ const getForecast = (address = '!') => {
                 placeName:  data.features[0].place_name,
             }
             messageOne.textContent = obj.placeName;
-            fetch('http://api.weatherstack.com/forecast?access_key=becf333d32be3abbb0bcc8111e9b243f&query=' + obj.latitude + ',' + obj.longitude)
+            fetch('http://api.weatherstack.com/forecast?access_key=becf333d32be3abbb0bcc8111e9b243f&query=' + obj.latitude + ',' + obj.longitude, {
+                mode: 'no-cors' // 'cors' by default
+              })
             .then(response => response.json())
             .then(data => {
                 console.log(data);
