@@ -17,10 +17,11 @@ const getForecast = (address = '!') => {
                 placeName:  data.features[0].place_name,
             }
             messageOne.textContent = obj.placeName;
-            fetch('https://api.weatherstack.com/forecast?access_key=becf333d32be3abbb0bcc8111e9b243f&query=' + obj.latitude + ',' + obj.longitude)
+            fetch('http://api.weatherstack.com/forecast?access_key=becf333d32be3abbb0bcc8111e9b243f&query=' + obj.latitude + ',' + obj.longitude)
             .then(response => response.json())
             .then(data => {
-                 messageTwo.textContent = `${body.current.weather_descriptions[0]}. It is ${body.current.temperature} degrees Celsius. It feels like ${body.current.feelslike}. The humidity is ${body.current.humidity}, the cloud cover is ${body.current.cloudcover}%. There are ${body.current.precip}% chances of precipitations.`
+                console.log(data);
+                 messageTwo.textContent = `${data.current.weather_descriptions[0]}. It is ${data.current.temperature} degrees Celsius. It feels like ${data.current.feelslike}. The humidity is ${data.current.humidity}, the cloud cover is ${data.current.cloudcover}%. There are ${data.current.precip}% chances of precipitations.`
             });
         }
     });
